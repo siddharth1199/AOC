@@ -1,7 +1,7 @@
-with open('../inputs/day3.txt', "r") as f:
-    s = f.read().strip()
+with open('../inputs/day3_andrew.txt', "r") as f:
+    s = f.read()
 
-final_cord = []
+final_cord = [(0,0)]
 santa = [0, 0]
 robo = [0, 0]
 

@@ -1,7 +1,7 @@
 with open('../inputs/day3_andrew.txt', "r") as f:
     s = f.read()
 
-final_cord = [(0,0)]
+final_cord = [(0, 0)]
 santa = [0, 0]
 robo = [0, 0]
 
@@ -19,7 +19,7 @@ for move in s:
     
 print('Part 1 = ', len([list(x) for x in set(tuple(x) for x in final_cord)]))
 
-final_cord = []
+final_cord = [(0, 0)]
 
 for count, move in enumerate(s):
     if count % 2 ==0:

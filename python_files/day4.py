@@ -1,6 +1,6 @@
 import hashlib 
 
-def hash_key_val(s, val, start_point=0):
+def hash_key_val(s, val, start_point):
     i=start_point
     result=''
     zero_str = '0'*val

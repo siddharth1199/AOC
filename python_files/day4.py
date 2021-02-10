@@ -1,7 +1,7 @@
 import hashlib 
 
-def hash_key_val(s, val):
-    i=0
+def hash_key_val(s, val, start_point=0):
+    i=start_point
     result=''
     zero_str = '0'*val
     while(True):
@@ -13,10 +13,12 @@ def hash_key_val(s, val):
     
     
 def main():
-    #s = 'yzbqklnj'
-    s = input('Enter string here (with ""): ')
-    print('Part 1', hash_key_val(s, 5))
-    print('Part 2', hash_key_val(s, 6))
+    s = 'yzbqklnj'
+    #s = input('Enter string here (with ""): ')
+    part_1 = hash_key_val(s, 5, 0)
+    part_2 = hash_key_val(s, 6, part_1)
+    print('Part 1', part_1)
+    print('Part 2', part_2)
     
 if __name__ == "__main__":
     main()

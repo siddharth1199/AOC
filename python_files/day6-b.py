@@ -1,6 +1,5 @@
 import sys
 import re
-import numpy
 
 split_regex = re.compile(r"(.+) (\d+),(\d+) through (\d+),(\d+)")
 grid = [[0 for col in range(1000)] for row in range(1000)]
@@ -35,7 +34,7 @@ def main(path):
         command, x_start, y_start, x_end, y_end = split_command(word)
         final_grid = compute_status(command, x_start, y_start, x_end, y_end)
 
-    print(sum(map(sum, final_grid)))
+    print('Brightness level = ', sum(map(sum, final_grid)))
 
 
 if __name__ == "__main__":

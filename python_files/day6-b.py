@@ -1,3 +1,5 @@
+import datetime
+start_time = datetime.datetime.now()
 import sys
 import re
 
@@ -32,9 +34,11 @@ def main(path):
     word_list = load_file(path)
     for word in word_list:
         command, x_start, y_start, x_end, y_end = split_command(word)
-        final_grid = compute_status(command, x_start, y_start, x_end, y_end)
+        grid = compute_status(command, x_start, y_start, x_end, y_end)
 
-    print('Brightness level = ', sum(map(sum, final_grid)))
+    print('Brightness level = ', sum(map(sum, grid))) #(sum([sum([1 for y in x if y]) for x in final_grid])) is better option?
+    processing_time = (datetime.datetime.now() - start_time).total_seconds() * 1000
+    print("Time taken to get answer: {:.3f} ms".format(processing_time))
 
 
 if __name__ == "__main__":

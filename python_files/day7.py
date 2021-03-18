@@ -19,10 +19,8 @@ def pre_process(lines):
             instruction = [int(x) if x.isdigit() else x for x in instruction] # Convert the digits to int
             result[line[1]] = instruction
         else:
-            if command.isdigit():
-                result[line[1]] = int(command) # If it is already a numeric digit, convert to int
-            else:
-                result[line[1]] = command # Otherwise, keep it as it is
+            result[line[1]] = int(command) if command.isdigit() else command
+        
     return result
 
 
@@ -62,7 +60,12 @@ def main(path):
     end_time = time.time()
     duration = end_time - start_time
     print('The code took {} milliseconds to execute'.format(1000 * duration))
-    
+    # Part B
+    input_file = pre_process(load_file(path))
+    input_file["b"] = result_signal
+    result_signal_b = signal_value("a", input_file)
+    print('part 2', result_signal_b)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

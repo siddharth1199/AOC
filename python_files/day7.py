@@ -55,10 +55,12 @@ def signal_value(wire_name, commands_dict):
 
 def main(path):
     input_file = pre_process(load_file(path))
-    result_signal = signal_value("a", input_file)
-    input_file["b"] = result_signal
-    result_signal_b = signal_value("a", input_file)
-    print('part 2', result_signal_b)
+    result_signal = signal_value("a", input_file) # Get A value 
+    # Part B
+    input_file = pre_process(load_file(path)) # reset signal
+    input_file["b"] = result_signal # Assign value of a to b
+    result_signal_b = signal_value("a", input_file) # New signal
+    print('part 2', result_signal_b) 
     end_time = time.time()
     duration = end_time - start_time
     print('The code took {} milliseconds to execute'.format(1000 * duration))

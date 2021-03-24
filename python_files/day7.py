@@ -59,7 +59,6 @@ def main(path):
     result_signal = signal_value("a", input_file) # Get A value
     print('part A = ', result_signal)
     # Part B
-    #input_file = pre_process(load_file(path)) # reset signal
     input_file2["b"] = result_signal # Assign value of a to b
     result_signal_b = signal_value("a", input_file2) # New signal
     print('part B = ', result_signal_b) 

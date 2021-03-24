@@ -1,8 +1,5 @@
-import time
 import sys
 from copy import deepcopy
-start_time = time.time()
-
 
 def load_file(path):
     with open(path) as f:
@@ -63,7 +60,6 @@ def main(path):
     result_signal_b = signal_value("a", input_file2) # New signal
     print('part B = ', result_signal_b) 
     
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

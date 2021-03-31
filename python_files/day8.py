@@ -12,7 +12,7 @@ def main(path):
     lines =  load_file(path)
     for l in lines:
         # Part 1
-        # Eval does the trick of parsing the escape characters 
+        # Eval parses the escape characters 
         str_len += len(eval(l))
         raw_len += len(l)
         # Part 2

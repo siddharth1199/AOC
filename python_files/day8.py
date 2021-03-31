@@ -11,7 +11,10 @@ def main(path):
     for l in lines:
         str_len += len(eval(l))
         raw_len += len(l)
-        encoded_len += 2+l.count('\\')+l.count('"')+len(l)
+        # Part 2
+        # Basically, count each time a \ (rep by \\) and " appears and add it to the complete length
+        # Also add 2 to acount for the 2 " in the beginning and end
+        encoded_len += 2+l.count('\\')+l.count('"')+len(l) 
     print('Part 1 = ', (raw_len - str_len))
     print('Part 2 = ', (encoded_len - raw_len))
 

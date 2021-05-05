@@ -55,8 +55,7 @@ def main(path):
     print('part1 = ', find_max_happiness(names, happiness))
     # part b
     for person in names:
-        happiness['me' + person] = 0
-        happiness[person + 'me'] = 0
+        happiness['me' + person] = happiness[person + 'me'] = 0
     names.add('me')
     print('part2 = ' ,find_max_happiness(names, happiness))
 

@@ -1,8 +1,7 @@
 import re
 import sys
 import json
-
-
+ 
 def load_file(path):
     with open(path, "r") as f:
         part1 = f.readlines()       

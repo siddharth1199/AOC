@@ -2,7 +2,7 @@ import re
 import sys
 
 def parse_input(path):
-    pattern = re.compile(r'^(\w+) can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds.$')
+    pattern = re.compile(r'^(\w+) can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds.')
     names = set()
     speeds = {}
     times = {}

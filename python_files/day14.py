@@ -24,7 +24,14 @@ def compute_dist(speed, time, rest, total_time):
 
 def main(path):
     names, speeds, times, rests = parse_input(path)
-    print('max dist = ', max([compute_dist(speeds[name], times[name], rests[name], 2503) for name in names]))
+    print('max dist = ', max(compute_dist(speeds[name], times[name], rests[name], 2503) for name in names))
+    points = [0] * len(names)
+    for i in range(1, 2503):
+        positions = [compute_dist(speeds[name], times[name], rests[name], i) for name in names]
+        for i, pos in enumerate(positions):
+            if pos == max(positions):
+                points[i] += 1
+    print('max points = ', max(points))
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

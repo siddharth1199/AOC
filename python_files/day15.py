@@ -25,8 +25,7 @@ def calculate_score(ing):
             for k in range(0, 100 - i - j):
                 l = 100 - i - j - k
                 cap = ing['Candy'][0] * i + ing['Chocolate'][0] * j + ing['Sprinkles'][0] * k + ing['Sugar'][0] * l
-                dur = ing['Candy'][1] * i + ing['Chocolate'][1] * j + ing['Sprinkles'][1] * k + ing['Sugar'][
-                    1] * l
+                dur = ing['Candy'][1] * i + ing['Chocolate'][1] * j + ing['Sprinkles'][1] * k + ing['Sugar'][1] * l
                 fla = ing['Candy'][2] * i + ing['Chocolate'][2] * j + ing['Sprinkles'][2] * k + ing['Sugar'][2] * l
                 tex = ing['Candy'][3] * i + ing['Chocolate'][3] * j + ing['Sprinkles'][3] * k + ing['Sugar'][3] * l
 

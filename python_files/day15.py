@@ -2,16 +2,14 @@ from collections import namedtuple
 import re
 import sys
 
-line_re = re.compile(r"^(\w+): capacity (-?\d+), durability (-?\d+), flavor (-?\d+), texture (-?\d+), calories (-?\d+)")
-
-Ingredient = namedtuple('Ingredient', ['capacity', 'durability', 'flavor', 'texture', 'calories'])
-
+regex_extractor = re.compile(r"^(\w+): capacity (-?\d+), durability (-?\d+), flavor (-?\d+), texture (-?\d+), calories (-?\d+)") 
+Ingredient = namedtuple('Ingredient', ['capacity', 'durability', 'flavor', 'texture', 'calories']) 
 
 def read_file(path):
     with open(path, 'r') as f:
         ingredients = {}
         for line in f:
-            groups = line_re.match(line)
+            groups = regex_extractor.match(line)
             ingredient = Ingredient._make([int(item) for item in groups.groups()[1:]])
             ingredients[groups.group(1)] = ingredient
         return ingredients

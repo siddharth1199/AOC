@@ -1,43 +1,40 @@
 from collections import namedtuple
 import re
 import sys
+from itertools import combinations_with_replacement as combinations
 
-regex_extractor = re.compile(r"^(\w+): capacity (-?\d+), durability (-?\d+), flavor (-?\d+), texture (-?\d+), calories (-?\d+)") 
-Ingredient = namedtuple('Ingredient', ['capacity', 'durability', 'flavor', 'texture', 'calories']) 
+line_re = re.compile(r"^(\w+): capacity (-?\d+), durability (-?\d+), flavor (-?\d+), texture (-?\d+), calories (-?\d+)")
+
+Ingredient = namedtuple('Ingredient', ['capacity', 'durability', 'flavor', 'texture', 'calories'])
 
 def read_file(path):
     with open(path, 'r') as f:
         ingredients = {}
         for line in f:
-            groups = regex_extractor.match(line)
+            groups = line_re.match(line)      
             ingredient = Ingredient._make([int(item) for item in groups.groups()[1:]])
             ingredients[groups.group(1)] = ingredient
         return ingredients
+        
+def get_max_score(recipe, ingredients):
+        score = max(0, sum(ingredients[item].capacity for item in recipe))
+        score *= max(0, sum(ingredients[item].durability for item in recipe))
+        score *= max(0, sum(ingredients[item].flavor for item in recipe))
+        score *= max(0, sum(ingredients[item].texture for item in recipe))
+        
+        return score
 
 
-def calculate_score(ing):
-    score = max_score = 0
-
-    for i in range(0, 100):
-        for j in range(0, 100 - i):
-            for k in range(0, 100 - i - j):
-                l = 100 - i - j - k
-                cap = ing['Candy'][0] * i + ing['Chocolate'][0] * j + ing['Sprinkles'][0] * k + ing['Sugar'][0] * l
-                dur = ing['Candy'][1] * i + ing['Chocolate'][1] * j + ing['Sprinkles'][1] * k + ing['Sugar'][1] * l
-                fla = ing['Candy'][2] * i + ing['Chocolate'][2] * j + ing['Sprinkles'][2] * k + ing['Sugar'][2] * l
-                tex = ing['Candy'][3] * i + ing['Chocolate'][3] * j + ing['Sprinkles'][3] * k + ing['Sugar'][3] * l
-
-                if cap <= 0 or dur <= 0 or fla <= 0 or tex <= 0:
-                    score = 0
-                    continue
-                score = cap * dur * fla * tex
-                max_score = max(max_score, score)
-    return max_score
-
-
-def main(path):
+def main(path):     
     ingredients = read_file(path)
-    print('max score = ', calculate_score(ingredients))
+    teaspoons = 100
+    max_score = calorie_score = 0
+    for recipe in combinations(ingredients.keys(), teaspoons):
+        max_score = max(max_score, get_max_score(recipe, ingredients))
+        calories = sum(ingredients[item].calories for item in recipe)
+        if calories == 500:
+            calorie_score = max(calorie_score, get_max_score(recipe, ingredients))
+    print('part 1 and part 2 = {}, {}'.format(max_score, calorie_score))
 
 
 if __name__ == "__main__":
